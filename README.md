@@ -1,44 +1,34 @@
-# retro_site
+# pdf_extractor
 
-retro_site is a web project that aims to recreate a nostalgic UI look and feel by drawing inspiration from retro operating systems such as Windows 95 and 98. 
+pdf_extractor is a project that automates text extraction from a document that contains work schedule
 
 ## Under the hood
 
-The tech stack has been kept barebones and simple intentionally - this was meant to be a single page, static personal website. The reason being that I intended to host it in an AWS S3 bucket and utilize that sweet free usage tier! This project utilizes the following:
+This is a very simple python program, so it is very lightweight. Two main python libraries have been used:
 
-* HTML
-* JavaScript
-* TailWindCSS
+* <u>Pandas</u>: a software library written for the Python programming language for data manipulation and analysis. 
+* <u>Tabula</u>: tabula-py is a simple Python wrapper of tabula-java, which can read table of PDF. 
 
-## Building the CSS
+## Running the code
 
-First, make the standalone Tailwind CLI file, and the watcher executable:
+### Using main program directly
+You can use the program directly using:
   ```sh
-chmod +x tailwind_exec
-chmod +x watcher.sh
-  ```
-Start the watcher:
-  ```sh
-sudo ./watcher.sh
+python3 pdf_extract.py
   ```
 
-Done! The watcher will monitor file changes; any changes that you make to the index.html, input.css, etc. will be processed appropriately by the tailwind CSS executable and reflected in the output.css file.
+### Using script to automate data extraction
 
-## Running the project
-Simply open the index.html file in any modern web browser to watch retro_site in action. Being a static website, it doesn't require a production server.
+  ```sh
+./run.sh
+  ```
 
-## Tailwind executable
-Tailwind CSS is written in JavaScript and usually distributed as an NPM package. The traditional TailWind distribution makes it unsuitable for a project like this - one which aims to be barebones and avoid dependencies as much as possible. Thus, a standalone TailWind CLI executable has been used here. This executable was created using pkg, a Vercel project that can package a Node.js project and all its dependencies into a singular executable file: https://github.com/vercel/pkg
+Script will be run. It will obtain PDF file from specified location, store it locally, extract the desired data, and clean up the program directory.
+
+## Tailoring to your needs
+You can go into the code and input the location which you want pdf_extractor to obtain the raw data from.
 
 ## Documentation
-* https://tailwindcss.com/docs/
+* https://tabula-py.readthedocs.io/en/latest/
+* https://pandas.pydata.org/docs/
 
-## Future improvements
-* Make windows movable, resizable, minimizable and closable.
-* Be able to spawn multiple windows on the screen at once and seamlessly manage transtion between them.
-* Show open windows on the taskbar.
-* Make the 'Start' button at bottom interactive.
-
-## Acknowledgement
-* Favicon used from this beautiful origami pack: https://www.flaticon.com/free-icons/origami
-* Retro icons taken from: https://aconfuseddragon.itch.io/windows-95-plus-1
