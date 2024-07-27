@@ -16,6 +16,7 @@ You can use the program directly using:
   ```sh
 python pdf_extract.py
   ```
+Using this method, the schedule PDF in question should either be available in the same directory as pdf_extractor, or the commented out code in pdf_extract.py can be used to grab a schedule file from specified URL.
 
 ### Using script to automate data extraction
 Make the script executable:
