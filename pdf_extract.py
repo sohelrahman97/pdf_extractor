@@ -1,40 +1,39 @@
 import tabula
-import pandas as pd
 import numpy as np
+import pandas as pd
 import os
 
 
 def schedule_parser(path,filename):
     # Read pdf into list of DataFrame
-    dfs = tabula.read_pdf(filename, pages='all')
+        # Use this to read from internet source:
+            # pdf_path = "https://s3.amazonaws.com/www.srahman.io/media/dummy_timetable.pdf"
+            # dfs = tabula.read_pdf(pdf_path, stream=True, pages="1")
+        # Use this to convert to CVS file
+            # tabula.convert_into(filename, "output.csv", output_format="csv", pages='all')
 
-    tabula.convert_into(filename, "output.csv", output_format="csv", pages='all')
+    dfs = tabula.read_pdf(filename, stream=True, pages="1")
 
-    df = pd.read_csv('output.csv', sep=',', header=1, dtype=str, nrows=29)
-
-    df1 = df.loc[:]['Day']
-    df2 = df.loc[:]['Employee']
-    df3 = df.loc[:]['Sohel']
-
-    result = []
+    # Convert into pandas dataframe
+    df0 = pd.DataFrame(dfs[0])
+    length = len(df0)
     temp_tup = ()
+    result = []
 
-    length = len(df3)
+    df1 = df0.loc[:,"Day"]
+    df2 = df0.loc[:,"Employee"]
+    df3 = df0.loc[:,"Sohel"]
 
+    # Collect relevant data into a list of string tuples
     for x in range(length):
         temp_tup = (str(df1[x]), str(df2[x]), str(df3[x]))
         result.append(temp_tup)
 
-    #temp = result[0]
-    #print(temp[2])
     result_formatter(result, filename)
-
-    os.remove('output.csv')
 
 
 def result_formatter(result, filename):
     length = len(result)
-    i=0
     sanitized_string = ''
 
     for x in range(length):

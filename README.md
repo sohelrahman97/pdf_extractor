@@ -14,11 +14,15 @@ This is a very simple python program, so it is very lightweight. Two main python
 ### Using main program directly
 You can use the program directly using:
   ```sh
-python3 pdf_extract.py
+python pdf_extract.py
   ```
 
 ### Using script to automate data extraction
-
+Make the script executable:
+  ```sh
+chmod +x run.sh
+  ```
+Run the script:  
   ```sh
 ./run.sh
   ```
